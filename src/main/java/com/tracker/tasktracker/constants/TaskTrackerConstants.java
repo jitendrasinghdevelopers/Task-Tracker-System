@@ -1,6 +1,8 @@
 package com.tracker.tasktracker.constants;
 
 public class TaskTrackerConstants {
+	
+	// No create object for this constants 
 	private TaskTrackerConstants() {
 		
 	}
