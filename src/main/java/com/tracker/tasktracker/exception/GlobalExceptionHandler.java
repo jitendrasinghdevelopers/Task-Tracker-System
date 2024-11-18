@@ -27,17 +27,18 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 	}
 
 	@Override
-	// populate the field error in postman any bean validation failure
+	// Populate the field error in postman any bean validation failure
 	protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
 			HttpHeaders headers, HttpStatusCode status, WebRequest request) {
 		Map<String, String> validationErrors = new HashMap<>();
 		List<ObjectError> validationErrorList = ex.getBindingResult().getAllErrors();
-
-		validationErrorList.forEach(error -> {
-			String fieldName = ((FieldError) error).getField();
-			String validationMsg = error.getDefaultMessage();
-			validationErrors.put(fieldName, validationMsg);
-		});
+		
+		validationErrorList.stream().filter(FieldError.class::isInstance).map(FieldError.class::cast)
+				.forEach(fieldError -> {
+					String fieldName  = fieldError.getField();
+					String vaildationMsg = fieldError.getDefaultMessage();
+					validationErrors.put(fieldName, vaildationMsg);
+				});
 		return new ResponseEntity<>(validationErrors, HttpStatus.BAD_REQUEST);
 	}
 
