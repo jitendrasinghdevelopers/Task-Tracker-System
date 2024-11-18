@@ -33,8 +33,11 @@ Before running the project, make sure you have the following installed:
 
 ### Step 1: Clone the Repository
 Clone the repository to your local machine using the following command:
-```bash
-git clone https://github.com/jitendrasinghdevelopers/Task-Tracker-System.git
+ jitendrasinghdevelopers-task-tracker
+
+
+
+git clone https://github.com/jitendrasinghdevelopers/task-tracker-system.git
 
 ## API Endpoints
 Use Postman or any REST client to test the following endpoints:
